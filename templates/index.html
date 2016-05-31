@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/static/main.css">
+  </head>
+  <body>
+    <div id="main">
+      <div id="clock">
+        <div id="time"></div>
+        <div id="date"><br></div>
+      </div>
+      <div id="weather">
+        <div id="weather-now">Loading...</div>
+        <div id="temp-max" class="temp-label"></div>
+        <div id="temp-min" class="temp-label"></div>
+        <canvas id="precip" width="480" height="100"></canvas>
+        <div id="precip-labels">
+          <span class="lab-0"></span>
+          <span class="lab-1"></span>
+          <span class="lab-2"></span>
+          <span class="lab-3"></span>
+          <span class="lab-4"></span>
+          <span class="lab-5"></span>
+          <span class="lab-6"></span>
+          <span class="lab-7"></span>
+        </div>
+      </div>
+      <div id="nest">
+        <div id="current-temp">Loading...</div>
+        <div id="nest-control">
+
+        </div>
+      </div>
+      <div id="shopping">
+        <div class="title">Shopping List</div>
+        <div id="list">
+          <div class="item">Loading...</div>
+        </div>
+      </div>
+      <div id="chromecasts">
+        {% for cast in conf.CAST_NAMES %}
+          <div id="{{ cast }}" class="cast">
+            <span>{{ cast }}</span>
+            <div class="controls disabled">
+              <div class="status">Loading...</div>
+              <div class="stop control" data-action="stop" data-cast="{{ cast }}"><i class="fa fa-stop" aria-hidden="true"></i></div>
+              <div class="next control" data-action="next" data-cast="{{ cast }}"><i class="fa fa-step-forward" aria-hidden="true"></i></div>
+              <div class="play control" data-action="play" data-cast="{{ cast }}"><i class="fa fa-play" aria-hidden="true"></i></div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="https://api.trello.com/1/client.js?key={{ conf.TRELLO_KEY }}"></script>
+    <script>
+    NEST_DEVICE = '{{ conf.NEST_DEVICE }}'
+    CAST_NAMES = {{ conf.CAST_NAMES|safe }}
+    TRELLO_LIST_ID = '{{ conf.TRELLO_LIST_ID }}'
+    FORECAST_KEY = '{{ conf.FORECAST_KEY }}'
+    </script>
+    <script src="/static/main.js"></script>
+  </body>
+</html>

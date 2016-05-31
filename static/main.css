@@ -1,0 +1,141 @@
+body, html{
+    font-family:'Roboto Slab';
+    margin:0;
+    padding:0;
+}
+div{
+    box-sizing:border-box;
+}
+#main {
+    width:800px;
+    height:480px;
+    background:#222;
+    color: #fff;
+    margin:0;
+    padding:0;
+}
+#main>div{
+    float:left;
+}
+#clock {
+    width:300px;
+    height:240px;
+}
+#time{
+    width:300px;
+    font-size:90px;
+    line-height:100px;
+    font-weight:100;
+    margin-left:20px;
+}
+#date{
+    margin-left:20px;
+    font-size:45px;
+}
+#weather{
+    width: 500px;
+    height: 240px;
+    padding-top: 20px;
+    position: relative;
+}
+#weather-now{
+    font-size:45px;
+    margin-bottom: 15px;
+}
+.temp-label{
+    position: absolute;
+    left: -30px;
+    font-size: 12px;
+}
+#temp-max{
+    top:105px;
+}
+#temp-min{
+    top:160px;
+}
+#precip{
+    background: #000;
+    height:100px;
+    width:480px;
+}
+#precip-labels span{
+    font-size: 10px;
+    display: block;
+    transform: rotate(90deg);
+    float: left;
+    width: 105px;
+    margin-top: 46px;
+    margin-left: -45px;
+}
+#nest{
+    padding:20px;
+    width:200px;
+    height:240px;
+}
+#current-temp{
+    text-align: center;
+}
+#nest-control{
+    background: #333;
+    border-radius: 100px;
+    height: 150px;
+    width:150px;
+    margin:20px auto;
+    text-align: center;
+    line-height: 150px;
+    font-size: 40px;
+}
+#nest-control.active{
+    border:3px solid #e51;
+}
+#shopping{
+    width:200px;
+    height: 240px;
+    padding:20px;
+}
+#shopping .title{
+    margin-bottom: 10px;
+}
+#shopping .item{
+    font-size: 12px;
+    font-weight: 300;
+    margin-bottom: 5px;
+}
+#chromecasts{
+    float:right;
+    width:400px;
+    height:240px;
+}
+#chromecasts .cast{
+    width:400px;
+    height:120px;
+}
+#chromecasts .cast>span{
+    padding: 10px 20px 10px;
+    display: block;
+    font-size: 25px;
+    font-weight:lighter;
+}
+#chromecasts .controls>div.status{
+    float:left;
+    width:220px;
+    height: 60px;
+    padding:10px 20px 0;
+    text-transform: capitalize;
+}
+#chromecasts .controls>div.control{
+    float:right;
+    width:60px;
+    height: 60px;
+    font-size: 30px;
+    line-height: 55px;
+    text-align: center;
+}
+#chromecasts .controls.disabled>div.control{
+    color:#777;
+}
+.now-playing{
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 300;
+}
