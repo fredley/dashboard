@@ -5,6 +5,19 @@ function getDOW(d){
 function getMonth(d){
     return ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][d.getMonth()];
 }
+function fade(target){
+  while(brightness != target){
+    var diff = (brightness > target) ? -5 : 5;
+    var value = Math.min(Math.max(0, brightness + diff),255);
+    setBrightness(value);
+  }
+}
+function setBrightness(value){
+  brightness = value;
+  $.ajax({
+    url:'localhost:5000/bl/' + value + '/'
+  });
+}
 //http://stackoverflow.com/a/15528789/319618
 function getCurvePoints(pts, tension, numOfSegments) {
     tension = (typeof tension != 'undefined') ? tension : 0.5;
@@ -203,6 +216,12 @@ $(document).ready(function(){
   setInterval(function(){updateChromecast();}, 5000);
   setInterval(function(){trelloGetList();}, 1000 * 60 * 5); // 5 minutes
   setInterval(function(){updateWeather();}, 1000 * 60 * 5); // 5 minutes
+  var fadeout_timer = 0;
+  $('body').on('click',function(){
+    clearTimeout(fadeout_timer);
+    fade(255);
+    fadeout_timer = setTimeout(fade(40), 10000);
+  });
   $('.control').on('click',function(){
     if ($(this).parent().hasClass('disabled')) return;
     var cast = $(this).attr('data-cast');

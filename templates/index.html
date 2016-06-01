@@ -61,10 +61,11 @@
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <script src="https://api.trello.com/1/client.js?key={{ conf.TRELLO_KEY }}"></script>
     <script>
-    NEST_DEVICE = '{{ conf.NEST_DEVICE }}'
-    CAST_NAMES = {{ conf.CAST_NAMES|safe }}
-    TRELLO_LIST_ID = '{{ conf.TRELLO_LIST_ID }}'
-    FORECAST_KEY = '{{ conf.FORECAST_KEY }}'
+    NEST_DEVICE = '{{ conf.NEST_DEVICE }}';
+    CAST_NAMES = {{ conf.CAST_NAMES|safe }};
+    TRELLO_LIST_ID = '{{ conf.TRELLO_LIST_ID }}';
+    FORECAST_KEY = '{{ conf.FORECAST_KEY }}';
+    brightness = {{ brightness }};
     </script>
     <script src="/static/main.js"></script>
   </body>

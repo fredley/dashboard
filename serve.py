@@ -3,11 +3,14 @@ import pychromecast
 import json
 import conf
 from nest_thermostat import Nest
+import subprocess
 
 app = Flask(__name__)
 nest = Nest(conf.NEST_USERNAME, conf.NEST_PASSWORD, units='C')
 nest.login()
 casts = {}
+
+brightness = int(subprocess.check_output('cat /sys/devices/platform/rpi_backlight/backlight/rpi_backlight/brightness', shell=True))
 
 def init_cast(name):
     casts[name] = pychromecast.get_chromecast(friendly_name=name)
@@ -17,7 +20,17 @@ def init_cast(name):
 
 @app.route('/')
 def home():
-    return render_template('index.html', conf=conf)
+    return render_template('index.html', conf=conf, brightness=brightness)
+
+@app.route('/bl/')
+def bl():
+    return str(brightness)
+
+@app.route('/bl/<val>/')
+def bl_set(val):
+    subprocess.call('sudo bash -c "echo {} > /sys/devices/platform/rpi_backlight/backlight/rpi_backlight/brightness"'.format(val), shell=True)
+    brightness = int(val)
+    return "OK"
 
 @app.route('/cast/')
 def info():
